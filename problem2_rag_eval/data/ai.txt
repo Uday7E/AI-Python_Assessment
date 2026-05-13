@@ -1,0 +1,6 @@
+What is RAG?RAG is a technique that improves the accuracy and reliability of Generative AI models (like LLMs) by allowing them to access data outside of their original training data before generating a response.The Problem: Standard LLMs can "hallucinate" (make things up) or provide outdated information because their knowledge is limited to what they were trained on.The Solution (RAG): Instead of relying only on its internal memory, the AI first searches a trusted database (like your company documents or live internet search) for relevant information. It then uses that information to generate an accurate, up-to-date answer.
+
+
+
+
+

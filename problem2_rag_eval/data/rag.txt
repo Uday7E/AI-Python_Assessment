@@ -1,0 +1,1 @@
+A Simple AnalogyStandard LLM: A student taking an exam relying only on memory.RAG: A student taking an "open book" exam, looking up the facts before writing the answer.It is heavily used today to build specialized AI agents and assistants that need to be trustworthy
