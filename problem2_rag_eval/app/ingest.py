@@ -1,52 +1,34 @@
-from langchain_community.document_loaders import DirectoryLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import HuggingFaceEmbeddings
+import sys
 import os
-from dotenv import load_dotenv
+import logging
 
-load_dotenv()
+# Add the parent directory to sys.path to allow imports from app module
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-DATA_PATH = "../data"
-VECTOR_DB_PATH = "../vectordb"
-
-
-def load_documents():
-    loader = DirectoryLoader(DATA_PATH, glob="*.txt")
-    documents = loader.load()
-    return documents
-
-
-def split_documents(documents):
-    text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=500,
-        chunk_overlap=50
-    )
-
-    chunks = text_splitter.split_documents(documents)
-    return chunks
-
-
-def create_vector_store(chunks):
-    embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
+from app.log_config import configure_global_logger
+from app.rag_pipeline import (
+    download_bucket_documents,
+    load_documents,
+    split_documents,
+    create_vector_store,
+    sync_local_documents_to_storage,
 )
-    vector_store = Chroma.from_documents(
-        documents=chunks,
-        embedding=embeddings,
-        persist_directory=VECTOR_DB_PATH
-    )
 
-    vector_store.persist()
+# Configure logging to console and shared file
+configure_global_logger()
 
-    print("Vector database created successfully!")
+logger = logging.getLogger(__name__)
+
+
+def build_index() -> None:
+    logger.info("Starting document ingestion and indexing process")
+    download_bucket_documents()
+    docs = load_documents()
+    chunks = split_documents(docs)
+    create_vector_store(chunks)
+    logger.info("Indexed %d chunks from %d documents", len(chunks), len(docs))
+    print(f"Indexed {len(chunks)} chunks from {len(docs)} documents")
 
 
 if __name__ == "__main__":
-    docs = load_documents()
-    chunks = split_documents(docs)
-
-    print(f"Loaded {len(docs)} documents")
-    print(f"Created {len(chunks)} chunks")
-
-    create_vector_store(chunks)
+    build_index()

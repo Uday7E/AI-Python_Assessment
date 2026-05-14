@@ -1,0 +1,82 @@
+# Smart Manufacturing Plant Sensor Report
+
+Plant Name: Alpha Manufacturing Unit
+Location: Mumbai Industrial Zone
+Generated Date: 2026-05-14
+
+## Machine Overview
+
+The manufacturing plant operates multiple automated conveyor systems and robotic assembly units. Each machine continuously sends telemetry data including temperature, vibration, pressure, and operational status.
+
+The plant uses AI-powered monitoring systems to detect anomalies, predict failures, and optimize maintenance schedules.
+
+## Sensor Data Standards
+
+The following operating ranges are considered normal:
+
+- Temperature Range: 40°C to 75°C
+- Vibration Range: 0.2 mm/s to 1.5 mm/s
+- Pressure Range: 90 PSI to 130 PSI
+- Power Consumption: 10 kW to 40 kW
+
+Any values outside these thresholds may indicate abnormal machine behavior.
+
+## Anomaly Detection
+
+The monitoring system applies statistical anomaly detection methods including:
+
+1. Z-Score Analysis
+2. Isolation Forest Models
+3. Rolling Mean Deviation
+4. Threshold-Based Alerting
+
+A Z-score greater than 3.0 is considered highly abnormal.
+
+Example:
+If the average machine temperature is 60°C and a machine reports 96°C, the system flags the reading as anomalous.
+
+## Data Imputation
+
+If sensor readings are missing or corrupted, the system generates healed values using:
+
+- Linear Regression
+- Moving Average Prediction
+- Time-Series Forecasting
+
+Example:
+If pressure data is unavailable for 5 minutes, the system predicts the value based on previous valid readings.
+
+## Confidence Score
+
+Each processed batch receives a confidence score between 0 and 1.
+
+Confidence scoring considers:
+- Data completeness
+- Number of anomalies
+- Imputation percentage
+- Sensor reliability
+- Historical consistency
+
+## Review Queue Logic
+
+If the confidence score falls below 0.7:
+- The batch is routed to a Review Queue
+- Manual inspection is required
+- Alerts are sent to operators
+
+## Example Batch Record
+
+Batch ID: BATCH_20260514_001
+
+Sensor Readings:
+- Temperature: 92°C
+- Vibration: 2.8 mm/s
+- Pressure: Missing
+- Power Consumption: 48 kW
+
+System Evaluation:
+- Temperature flagged as anomaly
+- Vibration flagged as anomaly
+- Pressure value imputed using regression
+- Confidence Score: 0.61
+- Routed to Review Queue: YES
