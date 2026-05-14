@@ -1,0 +1,74 @@
+[
+  {
+    "timestamp": "2024-05-14T09:00:00Z",
+    "event_type": "system_startup",
+    "component": "api_server",
+    "status": "success",
+    "duration_ms": 2500,
+    "details": {
+      "port": 8000,
+      "threads": 4,
+      "memory_mb": 256
+    }
+  },
+  {
+    "timestamp": "2024-05-14T09:05:30Z",
+    "event_type": "data_ingestion",
+    "component": "document_loader",
+    "status": "success",
+    "duration_ms": 1200,
+    "details": {
+      "documents_loaded": 5,
+      "chunks_created": 42,
+      "total_size_kb": 512
+    }
+  },
+  {
+    "timestamp": "2024-05-14T09:10:15Z",
+    "event_type": "embedding_generation",
+    "component": "embedding_service",
+    "status": "success",
+    "duration_ms": 3400,
+    "details": {
+      "chunks_embedded": 42,
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "vector_dimension": 384
+    }
+  },
+  {
+    "timestamp": "2024-05-14T09:15:00Z",
+    "event_type": "fact_extraction",
+    "component": "researcher_agent",
+    "status": "success",
+    "duration_ms": 5600,
+    "details": {
+      "facts_extracted": 28,
+      "entities_identified": 15,
+      "cache_hit_rate": 0.35
+    }
+  },
+  {
+    "timestamp": "2024-05-14T09:20:30Z",
+    "event_type": "fact_verification",
+    "component": "critic_agent",
+    "status": "success",
+    "duration_ms": 4200,
+    "details": {
+      "facts_verified": 25,
+      "contradictions_found": 2,
+      "verification_confidence": 0.89
+    }
+  },
+  {
+    "timestamp": "2024-05-14T09:25:00Z",
+    "event_type": "report_synthesis",
+    "component": "synthesizer_agent",
+    "status": "success",
+    "duration_ms": 2100,
+    "details": {
+      "sections_created": 5,
+      "citations_added": 25,
+      "report_length_chars": 8500
+    }
+  }
+]

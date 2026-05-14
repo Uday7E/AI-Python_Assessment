@@ -1,0 +1,48 @@
+# Multi-Agent Content Synthesizer - Sample Text Document
+
+## Introduction
+
+This is a sample text document demonstrating the multi-agent content synthesizer system.
+The system is designed to process multiple sources and generate comprehensive reports
+with verified facts and proper source citations.
+
+## Key Concepts
+
+### Multi-Agent Orchestration
+Multi-agent systems utilize multiple specialized AI agents working together to solve complex tasks.
+Each agent has a specific role and responsibility in the pipeline.
+
+### Semantic Embeddings
+Semantic embeddings represent text as high-dimensional vectors that capture meaning.
+Similar pieces of content will have similar embeddings, allowing us to find duplicates.
+
+### Fact Verification
+The critic agent compares extracted facts against source material to identify:
+- Verified claims (supported by sources)
+- Contradicted claims (disputed by sources)
+- Unverified claims (not mentioned in sources)
+
+## Benefits
+
+1. **Automated Content Synthesis** - Combine multiple sources into coherent reports
+2. **Fact Checking** - Verify claims across sources to reduce hallucinations
+3. **Source Attribution** - Track exactly where each fact originated
+4. **Duplicate Detection** - Identify and merge semantically similar information
+5. **Intelligent Caching** - Reduce API calls for similar queries
+
+## Use Cases
+
+- Technical documentation synthesis from multiple sources
+- Literature reviews from academic papers
+- Competitive analysis from multiple reports
+- Compliance report generation from various audit logs
+- News synthesis from multiple sources with fact verification
+
+## Implementation Details
+
+The system uses LangChain for agent orchestration, Google Gemini for language understanding,
+and Sentence Transformers for semantic embeddings.
+
+All results are cached using DiskCache to improve performance and reduce costs.
+
+Source citations include chunk IDs for precise reference tracking.
